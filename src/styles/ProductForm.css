@@ -1,0 +1,34 @@
+.react-quill {
+  background-color: #fff;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+}
+
+.react-quill .ql-toolbar {
+  border-bottom: 1px solid #ced4da;
+}
+
+.react-quill .ql-container {
+  height: 200px;
+}
+
+.list-group-item {
+  background-color: #f8f9fa;
+  border: 1px solid #ced4da;
+}
+
+.list-group-item .form-control {
+  border: none;
+  background-color: transparent;
+}
+
+.list-group-item .btn-danger {
+  margin-left: 10px;
+}
+
+.container {
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #ffffff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
