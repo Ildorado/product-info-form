@@ -1,7 +1,7 @@
-import React from 'react';
-import { Form } from 'react-bootstrap';
-import { UseFormRegister, FieldErrors } from 'react-hook-form';
-import { FormData } from '../types/formTypes';
+import React from "react";
+import { Form } from "react-bootstrap";
+import { UseFormRegister, FieldErrors } from "react-hook-form";
+import { FormData } from "../types/formTypes";
 
 interface ProductTitleProps {
   register: UseFormRegister<FormData>;
@@ -10,10 +10,10 @@ interface ProductTitleProps {
 
 const ProductTitle: React.FC<ProductTitleProps> = ({ register, errors }) => {
   return (
-    <Form.Group controlId="productTitle" className="mb-3">
+    <Form.Group className="mb-3">
       <Form.Label>Product Title</Form.Label>
       <Form.Control
-        {...register('productTitle')}
+        {...register("productTitle")}
         placeholder="Enter product title"
         isInvalid={!!errors.productTitle}
       />

@@ -1,13 +1,18 @@
-import React from 'react';
-import { Button, Form, Row, Col, ListGroup } from 'react-bootstrap';
-import { useFieldArray, UseFormRegister, Control, FieldErrors } from 'react-hook-form';
+import React from "react";
+import { Button, Form, Row, Col, ListGroup } from "react-bootstrap";
+import {
+  useFieldArray,
+  UseFormRegister,
+  Control,
+  FieldErrors,
+} from "react-hook-form";
 import {
   DragDropContext,
   Draggable,
   Droppable,
   DropResult,
-} from 'react-beautiful-dnd';
-import { FormData } from '../types/formTypes';
+} from "react-beautiful-dnd";
+import { FormData } from "../types/formTypes";
 
 interface ProductBulletsProps {
   control: Control<FormData>;
@@ -15,10 +20,14 @@ interface ProductBulletsProps {
   errors: FieldErrors<FormData>;
 }
 
-const ProductBullets: React.FC<ProductBulletsProps> = ({ control, register ,errors}) => {
+const ProductBullets: React.FC<ProductBulletsProps> = ({
+  control,
+  register,
+  errors,
+}) => {
   const { fields, append, remove, move } = useFieldArray({
     control,
-    name: 'productBullets',
+    name: "productBullets",
   });
 
   const onDragEnd = (result: DropResult) => {
@@ -27,12 +36,16 @@ const ProductBullets: React.FC<ProductBulletsProps> = ({ control, register ,erro
   };
 
   return (
-    <Form.Group controlId="productBullets" className="mb-3">
+    <Form.Group className="mb-3">
       <Form.Label>Product Bullets</Form.Label>
       <DragDropContext onDragEnd={onDragEnd}>
         <Droppable droppableId="productBullets">
           {(provided) => (
-            <ListGroup {...provided.droppableProps} ref={provided.innerRef} className="mb-3">
+            <ListGroup
+              {...provided.droppableProps}
+              ref={provided.innerRef}
+              className="mb-3"
+            >
               {fields.map((item, index) => (
                 <Draggable key={item.id} draggableId={item.id} index={index}>
                   {(provided) => (
@@ -45,7 +58,9 @@ const ProductBullets: React.FC<ProductBulletsProps> = ({ control, register ,erro
                       <Row className="w-100">
                         <Col>
                           <Form.Control
-                            {...register(`productBullets.${index}.value` as const)}
+                            {...register(
+                              `productBullets.${index}.value` as const
+                            )}
                             defaultValue={item.value}
                             isInvalid={!!errors.productBullets?.[index]?.value}
                           />
@@ -56,7 +71,10 @@ const ProductBullets: React.FC<ProductBulletsProps> = ({ control, register ,erro
                           )}
                         </Col>
                         <Col xs="auto">
-                          <Button variant="danger" onClick={() => remove(index)}>
+                          <Button
+                            variant="danger"
+                            onClick={() => remove(index)}
+                          >
                             Remove
                           </Button>
                         </Col>
@@ -70,12 +88,11 @@ const ProductBullets: React.FC<ProductBulletsProps> = ({ control, register ,erro
           )}
         </Droppable>
       </DragDropContext>
-      <Button variant="primary" onClick={() => append({ value: '' })}>
+      <Button variant="primary" onClick={() => append({ value: "" })}>
         Add Bullet
       </Button>
     </Form.Group>
   );
 };
-
 
 export default ProductBullets;
