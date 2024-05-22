@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Button, Form, Row, Col, ListGroup } from "react-bootstrap";
 import {
   useFieldArray,
@@ -13,6 +13,7 @@ import {
   DropResult,
 } from "react-beautiful-dnd";
 import { FormData } from "../types/formTypes";
+import { useDragAndDropWithStrictMode } from "../hooks/useDragAndDropWithStrictMode";
 
 interface ProductBulletsProps {
   control: Control<FormData>;
@@ -25,11 +26,7 @@ const ProductBullets: React.FC<ProductBulletsProps> = ({
   register,
   errors,
 }) => {
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
+  const { isDragAndDropEnabled } = useDragAndDropWithStrictMode();
 
   const { fields, append, remove, move } = useFieldArray({
     control,
@@ -43,9 +40,9 @@ const ProductBullets: React.FC<ProductBulletsProps> = ({
 
   return (
     <Form.Group className="mb-3">
-      <Form.Label>Product Bullets</Form.Label>
+      <Form.Label className="d-flex">Product Bullets</Form.Label>
       <DragDropContext onDragEnd={onDragEnd}>
-        {isMounted && (
+        {isDragAndDropEnabled && (
           <Droppable droppableId="droppable-productBullets">
             {(provided) => (
               <ListGroup
@@ -54,7 +51,6 @@ const ProductBullets: React.FC<ProductBulletsProps> = ({
                 className="mb-3"
               >
                 {fields.map((item, index) => {
-                  console.log("item:", item);
                   return (
                     <Draggable
                       key={item.id}
