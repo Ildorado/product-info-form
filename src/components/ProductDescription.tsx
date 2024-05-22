@@ -17,7 +17,11 @@ const ProductDescription: React.FC<ProductDescriptionProps> = ({ control }) => {
         name="productDescription"
         control={control}
         render={({ field }) => (
-          <ReactQuill {...field} aria-label="Product Description" />
+          <ReactQuill
+            {...field}
+            modules={{ toolbar: ["bold", "italic", "underline"] }}
+            aria-label="Product Description"
+          />
         )}
       />
     </Form.Group>
